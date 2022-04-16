@@ -33,6 +33,7 @@
                 this.userName = '';
                 this.profilePicture = '';
                 this.uniChatSignature = null;
+                this.cachedServerList = {};
                 this.initiateData();
             }
         }, {
@@ -78,5 +79,4 @@
         });
     }
     FetchWasm();
-    console.log(Client.uniChatSignature)
 })();
