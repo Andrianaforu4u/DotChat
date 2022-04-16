@@ -60,9 +60,12 @@
                 credentials: "same-origin"
             }).then((text) => {
                 if (!text.ok) throw "Failed to fetch wasm: " + text, reject()
-                const wasmBuffer = text.arrayBuffer();
+                let wasmBuffer = text.arrayBuffer();
+                WebAssembly.compile(wasmBuffer)
+                /*
                 console.log(wasmBuffer);
                 WebAssembly.instantiate(wasmBuffer, {});
+                */
                 resolve();
             });
         });
