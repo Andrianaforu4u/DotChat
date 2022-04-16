@@ -66,7 +66,7 @@
         }
     }
 
-    function FetchWasm() {
+    async function FetchWasm() {
         return new Promise(async (resolve, reject) => {
             fetch('xero.wasm').then(response =>
                 response.arrayBuffer()
@@ -77,6 +77,6 @@
             );
         });
     }
-    await FetchWasm();
+    FetchWasm();
     console.log(Client.uniChatSignature)
 })();
