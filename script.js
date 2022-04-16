@@ -32,6 +32,7 @@
                 this.chatServer = '';
                 this.userName = '';
                 this.profilePicture = '';
+                this.uniChatSignature = null;
                 this.initiateData();
             }
         }, {
@@ -58,7 +59,9 @@
     const importObject = {
         imports: {
             main: function (args) {
-
+                console.log(
+                    args
+                )
             }
         }
     }
@@ -70,10 +73,10 @@
             ).then(bytes =>
                 WebAssembly.instantiate(bytes, importObject)
             ).then(result =>
-                result.instance.exports.main(),
-                resolve()
+                result.instance.exports.main(), Client.uniChatSignature = result.instance.exports.main() , resolve()
             );
         });
     }
-    FetchWasm();
+    await FetchWasm();
+    console.log(Client.uniChatSignature)
 })();
