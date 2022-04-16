@@ -73,7 +73,7 @@
             ).then(bytes =>
                 WebAssembly.instantiate(bytes, importObject)
             ).then(result =>
-                result.instance.exports.main(), Client.uniChatSignature = result.instance.exports.main() , resolve()
+                console.log(result.instance.exports.main())
             );
         });
     }
