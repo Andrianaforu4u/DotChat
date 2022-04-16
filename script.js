@@ -62,7 +62,7 @@
                 if (!text.ok) throw "Failed to fetch wasm: " + text, reject()
                 const wasmBuffer = text.arrayBuffer();
                 console.log(wasmBuffer);
-                WebAssembly.instantiate(text, {});
+                WebAssembly.instantiate(wasmBuffer, {});
                 resolve();
             });
         });
