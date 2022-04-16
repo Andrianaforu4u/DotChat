@@ -54,20 +54,25 @@
         return _class1;
     }())();
 
+
+    const importObject = {
+        imports: {
+            main: function (args) {
+
+            }
+        }
+    }
+
     function FetchWasm() {
         return new Promise(async (resolve, reject) => {
-            fetch('xero.wasm', {
-                credentials: "same-origin"
-            }).then((text) => {
-                if (!text.ok) throw "Failed to fetch wasm: " + text, reject()
-                let wasmBuffer = text.arrayBuffer();
-                WebAssembly.compile(wasmBuffer)
-                /*
-                console.log(wasmBuffer);
-                WebAssembly.instantiate(wasmBuffer, {});
-                */
-                resolve();
-            });
+            fetch('xero.wasm').then(response =>
+                response.arrayBuffer()
+            ).then(bytes =>
+                WebAssembly.instantiate(bytes, importObject)
+            ).then(result =>
+                result.instance.exports.main(),
+                resolve()
+            );
         });
     }
     FetchWasm();
