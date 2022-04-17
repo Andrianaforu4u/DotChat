@@ -74,9 +74,14 @@
             ).then(bytes =>
                 WebAssembly.instantiate(bytes, importObject)
             ).then(result =>
-                console.log(result.instance.exports.main())
+               resolve(result)
             );
         });
     }
-    FetchWasm();
+    async function init() {
+        const { instance } = await FetchWasm();
+        let wasm = instance.exports;
+        console.log(wasm.main());
+    }
+    init();
 })();
